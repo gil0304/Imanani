@@ -137,7 +137,7 @@ extension SignUpViewController: SignUpModelDelegate {
     // ユーザー情報の登録が完了した時の処理
     func completedRegisterUserInfoAction() {
         // ChatListViewControllerへ画面遷移
-        let storyboard = UIStoryboard(name: "Content", bundle: nil)
+        let storyboard: UIStoryboard = self.storyboard!
         let contentVC = storyboard.instantiateViewController(withIdentifier: "ContentVC") as! ContentViewController
         let nav = UINavigationController(rootViewController: contentVC)
         nav.modalPresentationStyle = .fullScreen
