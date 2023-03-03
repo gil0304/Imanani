@@ -21,6 +21,8 @@
 		6DAB3C6C29AE75C7009797A5 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB3C6B29AE75C7009797A5 /* SignUpModel.swift */; };
 		6DAB3C7029AF23EF009797A5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB3C6F29AF23EF009797A5 /* ContentViewController.swift */; };
 		6DAB3C7229AFA23F009797A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB3C7129AFA23F009797A5 /* Main.storyboard */; };
+		6DD8363C29B0EA93002DC1F9 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8363A29B0EA93002DC1F9 /* ContentTableViewCell.swift */; };
+		6DD8363D29B0EA93002DC1F9 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD8363B29B0EA93002DC1F9 /* ContentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		6DAB3C6B29AE75C7009797A5 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		6DAB3C6F29AF23EF009797A5 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		6DAB3C7129AFA23F009797A5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6DD8363A29B0EA93002DC1F9 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
+		6DD8363B29B0EA93002DC1F9 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				6DAB3C5029AE5514009797A5 /* LaunchScreen.storyboard */,
 				6DAB3C5329AE5514009797A5 /* Info.plist */,
 				6DAB3C6229AE74CA009797A5 /* GoogleService-Info.plist */,
+				6DD8363A29B0EA93002DC1F9 /* ContentTableViewCell.swift */,
+				6DD8363B29B0EA93002DC1F9 /* ContentTableViewCell.xib */,
 			);
 			path = Imanani;
 			sourceTree = "<group>";
@@ -158,6 +164,7 @@
 				6DAB3C4F29AE5514009797A5 /* Assets.xcassets in Resources */,
 				6DAB3C7229AFA23F009797A5 /* Main.storyboard in Resources */,
 				6DAB3C6329AE74CA009797A5 /* GoogleService-Info.plist in Resources */,
+				6DD8363D29B0EA93002DC1F9 /* ContentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +179,7 @@
 				6DAB3C4629AE5512009797A5 /* AppDelegate.swift in Sources */,
 				6DAB3C6C29AE75C7009797A5 /* SignUpModel.swift in Sources */,
 				6DAB3C6A29AE75B4009797A5 /* SignUpViewController.swift in Sources */,
+				6DD8363C29B0EA93002DC1F9 /* ContentTableViewCell.swift in Sources */,
 				6DAB3C7029AF23EF009797A5 /* ContentViewController.swift in Sources */,
 				6DAB3C4829AE5512009797A5 /* SceneDelegate.swift in Sources */,
 			);
