@@ -63,6 +63,22 @@ class ContentViewController: UIViewController {
                                 }
                             }
                         )
+                        Firestore.firestore().collection("users").document("\(user.uid)").setData(
+                            [
+                                "latitude": self.latitudeNow,
+                                "longitude": self.longitudeNow
+                            ],merge: true
+                            ,completion: { [self] error in
+                                if let error = error {
+                                    print("作成失敗" + error.localizedDescription)
+                                    let dialog = UIAlertController(title: "作成失敗", message: error.localizedDescription, preferredStyle: .alert)
+                                    dialog.addAction(UIAlertAction(title: "OK", style: .default))
+                                    self.present(dialog, animated: true, completion: nil)
+                                } else {
+                                    print("作成成功")
+                                }
+                            }
+                        )
                     }
                 }
             }
