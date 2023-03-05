@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
 class ContentTableViewCell: UITableViewCell {
+    
+    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var contentLabel: UILabel!
+    @IBOutlet var addressLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +25,12 @@ class ContentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setCell(userName: String, content: String, address: String) {
+        userNameLabel.text = userName
+        contentLabel.text = content
+        addressLabel.text = address
     }
     
 }

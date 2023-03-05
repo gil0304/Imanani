@@ -119,6 +119,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentTextField" destination="jQ7-x8-IWF" id="f0a-sH-sX2"/>
+                        <outlet property="tableView" destination="Nye-ds-Qkj" id="bA3-me-xdT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CN0-6k-Spq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

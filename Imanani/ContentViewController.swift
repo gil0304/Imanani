@@ -9,9 +9,15 @@ import UIKit
 import CoreLocation
 import Firebase
 
-class ContentViewController: UIViewController {
+class ContentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var userIdArray: [String] = []
+    var userContentArray: [String] = []
+    var userAddressArray: [String] = []
+    var userName: String = ""
     
     @IBOutlet weak var contentTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     var locationManager: CLLocationManager!
     // 緯度
@@ -22,8 +28,60 @@ class ContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        
         setupLocationManager()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let user = Auth.auth().currentUser {
+            Firestore.firestore().collection("users").document(user.uid).getDocument(completion: {(snapshot,error) in
+                if let snap = snapshot {
+                    if let data = snap.data() {
+                        self.userName = data["userName"] as! String
+                    }
+                }
+            })
+            Firestore.firestore().collection("users/\(user.uid)/contents").order(by: "createdAt").addSnapshotListener({ (querySnapshot, error) in
+                if let querySnapshot = querySnapshot {
+                    var idArray: [String] = []
+                    var contentArray: [String] = []
+                    var addressArray: [String] = []
+                    for doc in querySnapshot.documents {
+                        let data = doc.data()
+                        idArray.append(doc.documentID)
+                        contentArray.append(data["content"] as! String)
+                        addressArray.append(data["address"] as! String)
+                    }
+                    self.userIdArray = idArray
+                    self.userContentArray = contentArray
+                    self.userAddressArray = addressArray
+                    self.tableView.reloadData()
+                } else if let error = error {
+                    print("取得失敗:" + error.localizedDescription)
+                }
+            })
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userContentArray.count
+    }
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        cell.textLabel?.text = userAddressArray[indexPath.row]
+//        return cell
+//    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
+        cell.setCell(userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
+        return cell
     }
     
     @IBAction func sendContent() {
@@ -41,14 +99,14 @@ class ContentViewController: UIViewController {
                 else {
                     return
                 }
-                let adress: String = "\(administrativeArea)\(locality)\(thoroughfare)\(subThoroughfare)"
+                let address: String = "\(administrativeArea)\(locality)\(thoroughfare)\(subThoroughfare)"
                 if let content = self.contentTextField.text {
                     if let user = Auth.auth().currentUser {
                         let createdTime = FieldValue.serverTimestamp()
                         Firestore.firestore().collection("users/\(user.uid)/contents").document().setData(
                             [
                                 "content": content,
-                                "adress": adress,
+                                "address": address,
                                 "createdAt": createdTime,
                                 "updatedAt": createdTime
                             ],merge: true
