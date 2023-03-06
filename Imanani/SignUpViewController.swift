@@ -29,6 +29,8 @@ class SignUpViewController: UIViewController {
         userNameTextField.delegate = self
         signUpModel.delegate = self
         
+        profileImageButton.layer.masksToBounds = true
+        
     }
     
     @IBAction func profileImageButtonAction(_ sender: Any) {
@@ -138,8 +140,11 @@ extension SignUpViewController: SignUpModelDelegate {
     func completedRegisterUserInfoAction() {
         // ChatListViewControllerへ画面遷移
         let storyboard: UIStoryboard = self.storyboard!
-        let contentVC = storyboard.instantiateViewController(withIdentifier: "ContentVC") as! ContentViewController
-        let nav = UINavigationController(rootViewController: contentVC)
+//        let contentVC = storyboard.instantiateViewController(withIdentifier: "ContentVC") as! ContentViewController
+//        let nav = UINavigationController(rootViewController: contentVC)
+        let tabBarController = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+        tabBarController.selectedIndex = 0
+        let nav = UINavigationController(rootViewController: tabBarController)
         nav.modalPresentationStyle = .fullScreen
         nav.modalTransitionStyle = .crossDissolve
         self.present(nav, animated: true, completion: nil)

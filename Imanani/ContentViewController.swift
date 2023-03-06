@@ -31,6 +31,7 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.rowHeight = 87
         
         setupLocationManager()
 
@@ -72,16 +73,14 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
         return userContentArray.count
     }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = userAddressArray[indexPath.row]
-//        return cell
-//    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
         cell.setCell(userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 87
     }
     
     @IBAction func sendContent() {
@@ -94,12 +93,11 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 guard let placemark = placemarks?.first, error == nil,
                 let administrativeArea = placemark.administrativeArea, // 都道府県
                 let locality = placemark.locality, // 市区町村
-                let thoroughfare = placemark.thoroughfare, // 地名(丁目)
-                let subThoroughfare = placemark.subThoroughfare // 番地
+                let subLocality = placemark.subLocality // 地名
                 else {
                     return
                 }
-                let address: String = "\(administrativeArea)\(locality)\(thoroughfare)\(subThoroughfare)"
+                let address: String = "\(administrativeArea)\(locality)\(subLocality)"
                 if let content = self.contentTextField.text {
                     if let user = Auth.auth().currentUser {
                         let createdTime = FieldValue.serverTimestamp()
