@@ -18,8 +18,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     let signUpModel = SignUpModel()
-    
-    
+    var saveData: UserDefaults = UserDefaults.standard
+    var saveDataUserName: String = ""
+    var saveDataUid: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,14 @@ class SignUpViewController: UIViewController {
         
         profileImageButton.layer.masksToBounds = true
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if saveData.object(forKey: "uid") as? String != nil {
+            completedRegisterUserInfoAction()
+            
+        }
+            
     }
     
     @IBAction func profileImageButtonAction(_ sender: Any) {
@@ -82,6 +91,9 @@ class SignUpViewController: UIViewController {
 
         // FirebaseFirestoreへ保存
         signUpModel.createUserInfo(uid: uid, docDate: docData as [String : Any])
+        
+        saveData.set(userName, forKey: "userName")
+        saveData.set(uid, forKey: "uid")
     }
     
 }
@@ -148,6 +160,7 @@ extension SignUpViewController: SignUpModelDelegate {
         nav.modalPresentationStyle = .fullScreen
         nav.modalTransitionStyle = .crossDissolve
         self.present(nav, animated: true, completion: nil)
+        
     }
 
 }

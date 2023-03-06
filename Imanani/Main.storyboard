@@ -151,6 +151,22 @@
             </objects>
             <point key="canvasLocation" x="2779" y="882"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="n7c-jU-VwD">
+            <objects>
+                <viewController id="Ejb-08-nDg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iYo-mp-bgN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="12x-Xj-7aU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ute-DC-1iG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k38-0d-Eth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3703" y="882"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="RfX-Y4-9Fz">
             <objects>
@@ -163,6 +179,7 @@
                     <connections>
                         <segue destination="8kQ-rD-vTp" kind="relationship" relationship="viewControllers" id="UQZ-d9-rSk"/>
                         <segue destination="V2j-f6-X02" kind="relationship" relationship="viewControllers" id="qo5-YP-aR6"/>
+                        <segue destination="Ejb-08-nDg" kind="relationship" relationship="viewControllers" id="Xp2-pr-0NX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBt-jz-eNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
