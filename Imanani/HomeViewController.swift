@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -20,6 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userContentArray: [String] = []
     var userAddressArray: [String] = []
     var userName: String = ""
+    var userImage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let snap = snapshot {
                     if let data = snap.data() {
                         self.userName = data["userName"] as! String
+                        self.userImage = data["profileImageName"] as! String
+                        print(type(of: self.userImage))
+                        print(self.userImage)
                     }
                 }
             })
@@ -65,6 +70,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     print("取得失敗" + error.localizedDescription)
                 }
             })
+            
+//            let imageUrl:URL = URL(string: userImage)!
+//            let imageData:Data = try! Data(contentsOf: imageUrl)
+//            profileImage.image = UIImage(data: imageData)!
         }
     }
     
@@ -74,7 +83,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
-        cell.setCell(userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
+        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com").child("profile_image").child("\(saveData.object(forKey: "profileImage") as? String)")
+        cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }
     

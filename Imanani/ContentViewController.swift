@@ -80,7 +80,6 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
         let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com").child("profile_image").child("\(saveData.object(forKey: "profileImage") as? String)")
-        print(type(of: storageref))
         cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }

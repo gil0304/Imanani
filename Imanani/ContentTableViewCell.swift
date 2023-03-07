@@ -31,7 +31,6 @@ class ContentTableViewCell: UITableViewCell {
         userNameLabel.text = userName
         contentLabel.text = content
         addressLabel.text = address
-        profileImageView.sd_setImage(with: profileImage)
     }
     
 }
