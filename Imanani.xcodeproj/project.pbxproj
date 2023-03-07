@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D473AFE29B7199D0042E889 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D473AFD29B7199D0042E889 /* EditViewController.swift */; };
 		6D8BBA4429B5A844004C94B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BBA4329B5A844004C94B5 /* MapViewController.swift */; };
+		6D8BBA4629B64018004C94B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BBA4529B64018004C94B5 /* HomeViewController.swift */; };
 		6DAB3C4629AE5512009797A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB3C4529AE5512009797A5 /* AppDelegate.swift */; };
 		6DAB3C4829AE5512009797A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB3C4729AE5512009797A5 /* SceneDelegate.swift */; };
 		6DAB3C4A29AE5512009797A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB3C4929AE5512009797A5 /* ViewController.swift */; };
@@ -27,7 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D473AFD29B7199D0042E889 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		6D8BBA4329B5A844004C94B5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6D8BBA4529B64018004C94B5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6DAB3C4229AE5512009797A5 /* Imanani.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imanani.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAB3C4529AE5512009797A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DAB3C4729AE5512009797A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				6DAB3C6929AE75B4009797A5 /* SignUpViewController.swift */,
 				6DAB3C6F29AF23EF009797A5 /* ContentViewController.swift */,
 				6D8BBA4329B5A844004C94B5 /* MapViewController.swift */,
+				6D8BBA4529B64018004C94B5 /* HomeViewController.swift */,
+				6D473AFD29B7199D0042E889 /* EditViewController.swift */,
 				6DAB3C7129AFA23F009797A5 /* Main.storyboard */,
 				6DAB3C4E29AE5514009797A5 /* Assets.xcassets */,
 				6DAB3C5029AE5514009797A5 /* LaunchScreen.storyboard */,
@@ -178,11 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D473AFE29B7199D0042E889 /* EditViewController.swift in Sources */,
 				6DAB3C4A29AE5512009797A5 /* ViewController.swift in Sources */,
 				6DAB3C4629AE5512009797A5 /* AppDelegate.swift in Sources */,
 				6DAB3C6C29AE75C7009797A5 /* SignUpModel.swift in Sources */,
 				6DAB3C6A29AE75B4009797A5 /* SignUpViewController.swift in Sources */,
 				6DD8363C29B0EA93002DC1F9 /* ContentTableViewCell.swift in Sources */,
+				6D8BBA4629B64018004C94B5 /* HomeViewController.swift in Sources */,
 				6DAB3C7029AF23EF009797A5 /* ContentViewController.swift in Sources */,
 				6DAB3C4829AE5512009797A5 /* SceneDelegate.swift in Sources */,
 				6D8BBA4429B5A844004C94B5 /* MapViewController.swift in Sources */,
