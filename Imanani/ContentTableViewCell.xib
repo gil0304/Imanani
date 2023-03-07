@@ -77,7 +77,7 @@
             <connections>
                 <outlet property="addressLabel" destination="PWQ-o8-Qy9" id="vJb-Iw-9ZG"/>
                 <outlet property="contentLabel" destination="rfb-Gq-Ecm" id="rvH-v4-8yc"/>
-                <outlet property="profileImage" destination="YKK-mF-PoN" id="87f-FW-xjz"/>
+                <outlet property="profileImageView" destination="YKK-mF-PoN" id="cpB-xa-Qx0"/>
                 <outlet property="userNameLabel" destination="Hhw-63-l5Q" id="xba-2N-0Hk"/>
             </connections>
             <point key="canvasLocation" x="37" y="20"/>

@@ -35,9 +35,11 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if saveData.object(forKey: "uid") as? String != nil {
-            completedRegisterUserInfoAction()
-            
+        if Auth.auth().currentUser != nil {
+            if saveData.object(forKey: "uid") as? String != nil {
+                completedRegisterUserInfoAction()
+                
+            }
         }
             
     }
@@ -94,6 +96,7 @@ class SignUpViewController: UIViewController {
         
         saveData.set(userName, forKey: "userName")
         saveData.set(uid, forKey: "uid")
+        saveData.set(profileImageName, forKey: "profileImage")
     }
     
 }

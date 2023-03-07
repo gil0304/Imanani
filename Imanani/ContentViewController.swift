@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import Firebase
+import FirebaseStorage
 
 class ContentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +16,7 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userContentArray: [String] = []
     var userAddressArray: [String] = []
     var userName: String = ""
+    var saveData: UserDefaults = UserDefaults.standard
     
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -32,6 +34,8 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.rowHeight = 87
+        tableView.reloadData()
+        
         
         setupLocationManager()
 
@@ -75,7 +79,9 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
-        cell.setCell(userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
+        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com").child("profile_image").child("\(saveData.object(forKey: "profileImage") as? String)")
+        print(type(of: storageref))
+        cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }
     
@@ -116,6 +122,7 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     self.present(dialog, animated: true, completion: nil)
                                 } else {
                                     print("作成成功")
+                                    contentTextField.text = ""
                                 }
                             }
                         )

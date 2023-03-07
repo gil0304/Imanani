@@ -11,7 +11,7 @@ import FirebaseStorage
 
 class ContentTableViewCell: UITableViewCell {
     
-    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
@@ -27,10 +27,11 @@ class ContentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(userName: String, content: String, address: String) {
+    func setCell(profileImage: StorageReference, userName: String, content: String, address: String) {
         userNameLabel.text = userName
         contentLabel.text = content
         addressLabel.text = address
+        profileImageView.sd_setImage(with: profileImage)
     }
     
 }
