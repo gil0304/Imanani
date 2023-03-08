@@ -16,6 +16,8 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userContentArray: [String] = []
     var userAddressArray: [String] = []
     var userName: String = ""
+    var userImage: String = ""
+    var downloadURL: URL?
     var saveData: UserDefaults = UserDefaults.standard
     
     @IBOutlet weak var contentTextField: UITextField!
@@ -48,6 +50,7 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if let snap = snapshot {
                     if let data = snap.data() {
                         self.userName = data["userName"] as! String
+                        self.userImage = data["profileImageName"] as! String
                     }
                 }
             })
@@ -79,7 +82,7 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
-        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com").child("profile_image").child("\(saveData.object(forKey: "profileImage") as? String)")
+        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com/profile_image").child(userImage)
         cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }

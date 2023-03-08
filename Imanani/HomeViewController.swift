@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userAddressArray: [String] = []
     var userName: String = ""
     var userImage: String = ""
+    var downloadURL: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            let imageData:Data = try! Data(contentsOf: imageUrl)
 //            profileImage.image = UIImage(data: imageData)!
         }
+        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com/profile_image").child(self.userImage)
+        storageref.downloadURL { url, error in
+            if let url = url {
+                self.downloadURL = url
+                print(url)
+                do {
+                    let data = try Data(contentsOf: url)
+                    return self.profileImage.image = UIImage(data: data)
+                } catch let imageerror {
+                    print("Error : \(imageerror.localizedDescription)")
+                }
+            }
+        }
+        print(self.downloadURL)
+        print(storageref)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +99,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
-        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com").child("profile_image").child("\(saveData.object(forKey: "profileImage") as? String)")
+        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com/profile_image").child(userImage)
         cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }
@@ -100,7 +116,5 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         nav.modalTransitionStyle = .crossDissolve
         self.present(nav, animated: true, completion: nil)
     }
-    
-    
 
 }

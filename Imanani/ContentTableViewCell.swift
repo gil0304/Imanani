@@ -15,6 +15,8 @@ class ContentTableViewCell: UITableViewCell {
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
+    
+    var downloadURL: URL?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +33,18 @@ class ContentTableViewCell: UITableViewCell {
         userNameLabel.text = userName
         contentLabel.text = content
         addressLabel.text = address
+        profileImage.downloadURL { url, error in
+            if let url = url {
+                self.downloadURL = url
+                print(url)
+                do {
+                    let data = try Data(contentsOf: url)
+                    return self.profileImageView.image = UIImage(data: data)
+                } catch let imageerror {
+                    print("Error : \(imageerror.localizedDescription)")
+                }
+            }
+        }
     }
     
 }
