@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var saveData: UserDefaults = UserDefaults.standard
     var userIdArray: [String] = []
+    var userNameArray: [String] = []
     var userContentArray: [String] = []
     var userAddressArray: [String] = []
     var userName: String = ""
@@ -52,18 +53,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             })
             
-            Firestore.firestore().collection("users/\(user.uid)/contents").order(by: "createdAt").addSnapshotListener({(querySnapshot, error) in
+            Firestore.firestore().collection("contents").order(by: "createdAt").addSnapshotListener({(querySnapshot, error) in
                 if let querySnapshot = querySnapshot {
                     var idArray: [String] = []
+                    var nameArray: [String] = []
                     var contentArray: [String] = []
                     var addressArray: [String] = []
                     for doc in querySnapshot.documents {
                         let data = doc.data()
                         idArray.append(doc.documentID)
+                        nameArray.append(data["user"] as! String)
                         contentArray.append(data["content"] as! String)
                         addressArray.append(data["address"] as! String)
                     }
                     self.userIdArray = idArray
+                    self.userNameArray = nameArray
                     self.userContentArray = contentArray
                     self.userAddressArray = addressArray
                     self.tableView.reloadData()
@@ -100,7 +104,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
         let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com/profile_image").child(userImage)
-        cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
+        cell.setCell(profileImage: storageref, userName: userNameArray[indexPath.row], content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }
     

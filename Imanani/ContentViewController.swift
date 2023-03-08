@@ -13,6 +13,7 @@ import FirebaseStorage
 class ContentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var userIdArray: [String] = []
+    var userNameArray: [String] = []
     var userContentArray: [String] = []
     var userAddressArray: [String] = []
     var userName: String = ""
@@ -54,18 +55,21 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             })
-            Firestore.firestore().collection("users/\(user.uid)/contents").order(by: "createdAt").addSnapshotListener({ (querySnapshot, error) in
+            Firestore.firestore().collection("contents").order(by: "createdAt").addSnapshotListener({ (querySnapshot, error) in
                 if let querySnapshot = querySnapshot {
                     var idArray: [String] = []
+                    var nameArray: [String] = []
                     var contentArray: [String] = []
                     var addressArray: [String] = []
                     for doc in querySnapshot.documents {
                         let data = doc.data()
                         idArray.append(doc.documentID)
+                        nameArray.append(data["user"] as! String)
                         contentArray.append(data["content"] as! String)
                         addressArray.append(data["address"] as! String)
                     }
                     self.userIdArray = idArray
+                    self.userNameArray = nameArray
                     self.userContentArray = contentArray
                     self.userAddressArray = addressArray
                     self.tableView.reloadData()
@@ -83,7 +87,7 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContentTableViewCell
         let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com/profile_image").child(userImage)
-        cell.setCell(profileImage: storageref, userName: userName, content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
+        cell.setCell(profileImage: storageref, userName: userNameArray[indexPath.row], content: userContentArray[indexPath.row], address: userAddressArray[indexPath.row])
         return cell
     }
     
@@ -109,8 +113,10 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if let content = self.contentTextField.text {
                     if let user = Auth.auth().currentUser {
                         let createdTime = FieldValue.serverTimestamp()
-                        Firestore.firestore().collection("users/\(user.uid)/contents").document().setData(
+                        Firestore.firestore().collection("contents").document().setData(
                             [
+                                "user": self.saveData.object(forKey: "userName") as! String,
+                                "uid": self.saveData.object(forKey: "uid") as! String,
                                 "content": content,
                                 "address": address,
                                 "createdAt": createdTime,

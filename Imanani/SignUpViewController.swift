@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 import Firebase
 import FirebaseStorage
 
@@ -21,6 +22,11 @@ class SignUpViewController: UIViewController {
     var saveData: UserDefaults = UserDefaults.standard
     var saveDataUserName: String = ""
     var saveDataUid: String = ""
+    var locationManager: CLLocationManager!
+    // 緯度
+    var latitudeNow: String = ""
+    // 経度
+    var longitudeNow: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +37,8 @@ class SignUpViewController: UIViewController {
         signUpModel.delegate = self
         
         profileImageButton.layer.masksToBounds = true
+        
+        setupLocationManager()
         
     }
     
@@ -89,7 +97,9 @@ class SignUpViewController: UIViewController {
         let docData = ["email": email,
                        "userName": userName,
                        "profileImageName": profileImageName,
-                       "createdAt": Timestamp()] as [String : Any?]
+                       "createdAt": Timestamp(),
+                       "latitude": self.latitudeNow,
+                       "longitude": self.longitudeNow] as [String : Any?]
 
         // FirebaseFirestoreへ保存
         signUpModel.createUserInfo(uid: uid, docDate: docData as [String : Any])
@@ -97,6 +107,43 @@ class SignUpViewController: UIViewController {
         saveData.set(userName, forKey: "userName")
         saveData.set(uid, forKey: "uid")
         saveData.set(profileImageName, forKey: "profileImage")
+    }
+    
+    func setupLocationManager() {
+        locationManager = CLLocationManager()
+        
+        guard let locationManager = locationManager else { return }
+        locationManager.requestWhenInUseAuthorization()
+        
+        // マネージャの設定
+        let status = CLLocationManager().authorizationStatus
+        // ステータスごとの処理
+        if status == .authorizedWhenInUse {
+            locationManager.delegate = self
+            // 位置情報取得を開始
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    /// アラートを表示する
+    func showAlert() {
+        let alertTitle = "位置情報取得が許可されていません。"
+        let alertMessage = "設定アプリの「プライバシー > 位置情報サービス」から変更してください。"
+        let alert: UIAlertController = UIAlertController(
+            title: alertTitle,
+            message: alertMessage,
+            preferredStyle:  UIAlertController.Style.alert
+        )
+        // OKボタン
+        let defaultAction: UIAlertAction = UIAlertAction(
+            title: "OK",
+            style: UIAlertAction.Style.default,
+            handler: nil
+        )
+        // UIAlertController に Action を追加
+        alert.addAction(defaultAction)
+        // Alertを表示
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -166,4 +213,17 @@ extension SignUpViewController: SignUpModelDelegate {
         
     }
 
+}
+
+extension SignUpViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.first
+        let latitude = location?.coordinate.latitude
+        let longitude = location?.coordinate.longitude
+        // 位置情報を格納する
+        self.latitudeNow = String(latitude!)
+        self.longitudeNow = String(longitude!)
+    }
+    
 }
