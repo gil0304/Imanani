@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFw-G7-Ce4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFw-G7-Ce4">
                                 <rect key="frame" x="137" y="193" width="119" height="119"/>
                                 <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -176,6 +176,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentTextField" destination="jQ7-x8-IWF" id="f0a-sH-sX2"/>
+                        <outlet property="profileImageView" destination="Gou-2N-SQO" id="90J-z9-COl"/>
+                        <outlet property="sendButton" destination="NfH-e6-Z7Q" id="4of-Tu-UdW"/>
                         <outlet property="tableView" destination="Nye-ds-Qkj" id="bA3-me-xdT"/>
                     </connections>
                 </viewController>
@@ -316,7 +318,7 @@
                                 <color key="textColor" red="0.078431372550000003" green="0.1529411765" blue="0.33725490200000002" alpha="0.69803921570000005" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0Y-bU-xOX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0Y-bU-xOX">
                                 <rect key="frame" x="131.66666666666666" y="184" width="132.99999999999997" height="133"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -325,6 +327,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="user_image"/>
+                                <connections>
+                                    <action selector="profileImageButtonAction:" destination="2s4-65-EKq" eventType="touchUpInside" id="pPT-7o-zPi"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask group" translatesAutoresizingMaskIntoConstraints="NO" id="GWt-NA-DXH">
                                 <rect key="frame" x="215" y="287" width="39" height="39"/>
@@ -391,7 +396,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="profileImage" destination="g0Y-bU-xOX" id="bd9-2t-Zeu"/>
+                        <outlet property="profileImageButton" destination="g0Y-bU-xOX" id="Zkf-Ht-Xil"/>
+                        <outlet property="saveButton" destination="VNo-9o-Bn5" id="VCW-bY-NZZ"/>
                         <outlet property="userNameTextField" destination="D7f-cx-O0z" id="OhN-vw-n25"/>
                     </connections>
                 </viewController>

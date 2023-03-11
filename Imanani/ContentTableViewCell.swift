@@ -17,10 +17,12 @@ class ContentTableViewCell: UITableViewCell {
     @IBOutlet var addressLabel: UILabel!
     
     var downloadURL: URL?
+    let user = Auth.auth().currentUser
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        profileImageView.layer.cornerRadius = 22
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,5 +48,16 @@ class ContentTableViewCell: UITableViewCell {
             }
         }
     }
+    
+//    @IBAction func settingButton() {
+//
+//        let alert: UIAlertController = UIAlertController(title: "", message: "この投稿を削除しますか？", preferredStyle: .actionSheet)
+//
+//        let defaultAction: UIAlertAction = UIAlertAction(title: "削除", style: .default) { UIAlertAction in
+//            Firestore.firestore().collection("contents").document()
+//        }
+//
+//        }
+//    }
     
 }

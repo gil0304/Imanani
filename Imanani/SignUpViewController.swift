@@ -37,6 +37,8 @@ class SignUpViewController: UIViewController {
         signUpModel.delegate = self
         
         profileImageButton.layer.masksToBounds = true
+        profileImageButton.layer.cornerRadius = 59.5
+        signUpButton.layer.cornerRadius = 10
         
         setupLocationManager()
         

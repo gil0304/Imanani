@@ -23,6 +23,8 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var sendButton: UIButton!
     
     var locationManager: CLLocationManager!
     // 緯度
@@ -39,6 +41,9 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = 87
         tableView.reloadData()
         
+        profileImageView.layer.cornerRadius = 21
+        
+        sendButton.layer.cornerRadius = 15
         
         setupLocationManager()
 
@@ -77,6 +82,19 @@ class ContentViewController: UIViewController, UITableViewDelegate, UITableViewD
                     print("取得失敗:" + error.localizedDescription)
                 }
             })
+        }
+        let storageref = Storage.storage().reference(forURL: "gs://imanani-7ee50.appspot.com/profile_image").child(userImage)
+        storageref.downloadURL { url, error in
+            if let url = url {
+                self.downloadURL = url
+                print(url)
+                do {
+                    let data = try Data(contentsOf: url)
+                    return self.profileImageView.image = UIImage(data: data)
+                } catch let imageerror {
+                    print("Error : \(imageerror.localizedDescription)")
+                }
+            }
         }
     }
     

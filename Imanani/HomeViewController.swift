@@ -35,6 +35,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.register(UINib(nibName: "ContentTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.rowHeight = 87
         
+        profileImage.layer.cornerRadius = 66.5
+        
+        editButton.layer.cornerRadius = 16
+        editButton.layer.borderWidth = 1
+        editButton.layer.borderColor = UIColor(hex: "142756").cgColor
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         print(self.downloadURL)
-        print(storageref)
+        print("これだよ\(storageref)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
