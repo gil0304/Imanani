@@ -25,6 +25,8 @@
 		6DAB3C7029AF23EF009797A5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB3C6F29AF23EF009797A5 /* ContentViewController.swift */; };
 		6DAB3C7229AFA23F009797A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB3C7129AFA23F009797A5 /* Main.storyboard */; };
 		6DD0CE5C29BC88E9001B348C /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0CE5B29BC88E9001B348C /* UIColorHex.swift */; };
+		6DD0CE5E29BCBE05001B348C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0CE5D29BCBE05001B348C /* SearchViewController.swift */; };
+		6DD0CE6129BE3CB3001B348C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD0CE6029BE3CB3001B348C /* Kingfisher */; };
 		6DD8363C29B0EA93002DC1F9 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8363A29B0EA93002DC1F9 /* ContentTableViewCell.swift */; };
 		6DD8363D29B0EA93002DC1F9 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DD8363B29B0EA93002DC1F9 /* ContentTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,7 @@
 		6DAB3C6F29AF23EF009797A5 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		6DAB3C7129AFA23F009797A5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6DD0CE5B29BC88E9001B348C /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		6DD0CE5D29BCBE05001B348C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6DD8363A29B0EA93002DC1F9 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
 		6DD8363B29B0EA93002DC1F9 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +62,7 @@
 				6DAB3C6129AE557D009797A5 /* FirebaseStorage in Frameworks */,
 				6DAB3C5D29AE557D009797A5 /* FirebaseFirestore in Frameworks */,
 				6DAB3C5F29AE557D009797A5 /* FirebaseFirestoreSwift in Frameworks */,
+				6DD0CE6129BE3CB3001B348C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +95,7 @@
 				6DAB3C6929AE75B4009797A5 /* SignUpViewController.swift */,
 				6DAB3C6F29AF23EF009797A5 /* ContentViewController.swift */,
 				6D8BBA4329B5A844004C94B5 /* MapViewController.swift */,
+				6DD0CE5D29BCBE05001B348C /* SearchViewController.swift */,
 				6D8BBA4529B64018004C94B5 /* HomeViewController.swift */,
 				6D473AFD29B7199D0042E889 /* EditViewController.swift */,
 				6DAB3C7129AFA23F009797A5 /* Main.storyboard */,
@@ -126,6 +131,7 @@
 				6DAB3C5C29AE557D009797A5 /* FirebaseFirestore */,
 				6DAB3C5E29AE557D009797A5 /* FirebaseFirestoreSwift */,
 				6DAB3C6029AE557D009797A5 /* FirebaseStorage */,
+				6DD0CE6029BE3CB3001B348C /* Kingfisher */,
 			);
 			productName = Imanani;
 			productReference = 6DAB3C4229AE5512009797A5 /* Imanani.app */;
@@ -157,6 +163,7 @@
 			mainGroup = 6DAB3C3929AE5512009797A5;
 			packageReferences = (
 				6DAB3C5929AE557D009797A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6DD0CE5F29BE3CB3001B348C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6DAB3C4329AE5512009797A5 /* Products */;
 			projectDirPath = "";
@@ -193,6 +200,7 @@
 				6DAB3C6C29AE75C7009797A5 /* SignUpModel.swift in Sources */,
 				6DAB3C6A29AE75B4009797A5 /* SignUpViewController.swift in Sources */,
 				6DD8363C29B0EA93002DC1F9 /* ContentTableViewCell.swift in Sources */,
+				6DD0CE5E29BCBE05001B348C /* SearchViewController.swift in Sources */,
 				6D8BBA4629B64018004C94B5 /* HomeViewController.swift in Sources */,
 				6DAB3C7029AF23EF009797A5 /* ContentViewController.swift in Sources */,
 				6DAB3C4829AE5512009797A5 /* SceneDelegate.swift in Sources */,
@@ -336,7 +344,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TJNUGC69RA;
+				DEVELOPMENT_TEAM = KLF7TCJL44;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Imanani/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -365,7 +373,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TJNUGC69RA;
+				DEVELOPMENT_TEAM = KLF7TCJL44;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Imanani/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -419,6 +427,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		6DD0CE5F29BE3CB3001B348C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -441,6 +457,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6DAB3C5929AE557D009797A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		6DD0CE6029BE3CB3001B348C /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DD0CE5F29BE3CB3001B348C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

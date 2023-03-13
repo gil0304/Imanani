@@ -68,7 +68,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         editImageToFirestorage()
                         let storyboard: UIStoryboard = self.storyboard!
                         let tabBarController = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
-                        tabBarController.selectedIndex = 2
+                        tabBarController.selectedIndex = 3
                         let nav = UINavigationController(rootViewController: tabBarController)
                         nav.modalPresentationStyle = .fullScreen
                         nav.modalTransitionStyle = .crossDissolve
